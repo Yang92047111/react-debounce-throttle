@@ -12,13 +12,12 @@ export default defineConfig({
     exclude: [
       'tests/e2e/**/*',
       'node_modules/**/*',
-      'tests/unit/components/**/*', // Exclude Phase 3 component tests
     ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: ['node_modules/', 'tests/', 'src/components/', 'src/assets/'],
-      include: ['src/utils/**', 'src/hooks/**'],
+      exclude: ['node_modules/', 'tests/', 'src/assets/'],
+      include: ['src/**'],
     },
   },
 })
