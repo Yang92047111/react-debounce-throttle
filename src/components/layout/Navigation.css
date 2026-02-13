@@ -1,0 +1,140 @@
+.navigation {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 6rem;
+  z-index: 90;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background-color: var(--neutral-dark);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.nav-list li {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-link {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: var(--neutral-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+}
+
+.nav-link:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+  color: var(--primary);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+  }
+
+  .nav-list.nav-open {
+    display: flex;
+  }
+
+  .nav-list li {
+    text-align: left;
+  }
+
+  .nav-link {
+    padding: 1rem 1.5rem;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-link.active {
+    border-left-color: var(--primary);
+    border-bottom-color: transparent;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .navigation {
+    background-color: #ffffff;
+  }
+
+  .nav-link {
+    color: var(--neutral-dark);
+  }
+}
+
+/* Dark mode styles */
+.dark-mode .navigation {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .nav-link {
+  color: var(--neutral-light);
+}
+
+.dark-mode .nav-list {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .hamburger {
+  background-color: var(--neutral-light);
+}

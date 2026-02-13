@@ -1,0 +1,239 @@
+.comparison-section {
+  padding: 3rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.comparison-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--neutral-dark);
+  margin-bottom: 3rem;
+}
+
+.comparison-table-container {
+  overflow-x: auto;
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  min-width: 600px;
+}
+
+.comparison-table thead {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+}
+
+.comparison-table th {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.comparison-table th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+.comparison-table th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.debounce-col {
+  background: rgba(59, 130, 246, 0.9) !important;
+}
+
+.throttle-col {
+  background: rgba(139, 92, 246, 0.9) !important;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.comparison-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.comparison-table td {
+  padding: 1rem 1.5rem;
+  line-height: 1.6;
+}
+
+.aspect-cell {
+  font-weight: 600;
+  color: var(--neutral-dark);
+  background: var(--neutral-light);
+  width: 25%;
+}
+
+.debounce-cell {
+  border-left: 3px solid var(--primary);
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.throttle-cell {
+  border-left: 3px solid var(--secondary);
+  background: rgba(139, 92, 246, 0.03);
+}
+
+.comparison-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.summary-card {
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.debounce-summary {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 2px solid var(--primary);
+}
+
+.throttle-summary {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border: 2px solid var(--secondary);
+}
+
+.summary-card h4 {
+  color: var(--primary);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.throttle-summary h4 {
+  color: var(--secondary);
+}
+
+.summary-card p {
+  line-height: 1.7;
+  color: var(--neutral-dark);
+  margin-bottom: 1rem;
+}
+
+.examples {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.example-tag {
+  background: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.throttle-summary .example-tag {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .comparison-section {
+    padding: 2rem 1rem;
+  }
+
+  .comparison-section h2 {
+    font-size: 2rem;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .summary-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .comparison-section h2 {
+    color: var(--neutral-light);
+  }
+
+  .comparison-table {
+    background-color: #2a2a2a;
+  }
+
+  .comparison-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  .aspect-cell {
+    background-color: #1a1a1a;
+    color: var(--neutral-light);
+  }
+
+  .debounce-cell,
+  .throttle-cell {
+    color: var(--neutral-light);
+  }
+
+  .summary-card p {
+    color: var(--neutral-light);
+  }
+
+  .example-tag {
+    background-color: #1a1a1a;
+  }
+}
+
+.dark-mode .comparison-section h2 {
+  color: var(--neutral-light);
+}
+
+.dark-mode .comparison-table {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .comparison-table tbody tr:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.dark-mode .aspect-cell {
+  background-color: #1a1a1a;
+  color: var(--neutral-light);
+}
+
+.dark-mode .debounce-cell,
+.dark-mode .throttle-cell {
+  color: var(--neutral-light);
+}
+
+.dark-mode .summary-card p {
+  color: var(--neutral-light);
+}
+
+.dark-mode .example-tag {
+  background-color: #1a1a1a;
+}
