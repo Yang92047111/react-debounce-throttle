@@ -7,8 +7,13 @@ import ComparisonTable from './components/education/ComparisonTable';
 import TimelineDiagram from './components/education/TimelineDiagram';
 import ConfigPanel from './components/ui/ConfigPanel';
 import MetricsDashboard from './components/ui/MetricsDashboard';
+import SearchDemo from './components/demos/SearchDemo';
+import ResizeDemo from './components/demos/ResizeDemo';
+import ScrollDemo from './components/demos/ScrollDemo';
+import ButtonClickDemo from './components/demos/ButtonClickDemo';
 import type { DemoConfig, MetricData } from './types';
 import './App.css';
+import './styles/demos.css';
 
 function App() {
   const [activeSection, setActiveSection] = useState('theory');
@@ -59,17 +64,10 @@ function App() {
 
         <section id="demos" className="demos-section">
           <h2>🎮 Interactive Demos</h2>
-          <div className="demo-placeholder">
-            <p>
-              Demo components will be implemented in Phase 4. They will showcase:
-            </p>
-            <ul>
-              <li>🔍 Search Input Demo (Debounce)</li>
-              <li>📐 Window Resize Demo (Throttle)</li>
-              <li>📜 Scroll Event Demo (Both)</li>
-              <li>🖱️ Button Click Demo (Throttle)</li>
-            </ul>
-          </div>
+          <SearchDemo />
+          <ResizeDemo />
+          <ScrollDemo />
+          <ButtonClickDemo />
         </section>
 
         <section id="metrics" className="metrics-section">
