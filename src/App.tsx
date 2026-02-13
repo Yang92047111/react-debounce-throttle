@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import Header from './components/layout/Header';
+import Navigation from './components/layout/Navigation';
+import Footer from './components/layout/Footer';
+import TheorySection from './components/education/TheorySection';
+import ComparisonTable from './components/education/ComparisonTable';
+import TimelineDiagram from './components/education/TimelineDiagram';
+import ConfigPanel from './components/ui/ConfigPanel';
+import MetricsDashboard from './components/ui/MetricsDashboard';
+import type { DemoConfig, MetricData } from './types';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeSection, setActiveSection] = useState('theory');
+  const [config, setConfig] = useState<DemoConfig>({
+    delay: 300,
+    interval: 200,
+    leading: false,
+    trailing: true,
+    maxWait: 1000,
+  });
+  const [metrics, setMetrics] = useState<MetricData[]>([]);
+
+  const handleConfigChange = (newConfig: DemoConfig) => {
+    setConfig(newConfig);
+  };
+
+  const handleResetConfig = () => {
+    setConfig({
+      delay: 300,
+      interval: 200,
+      leading: false,
+      trailing: true,
+      maxWait: 1000,
+    });
+  };
+
+  const handleResetMetrics = () => {
+    setMetrics([]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Header />
+      <Navigation activeSection={activeSection} onNavigate={setActiveSection} />
+
+      <main className="main-content">
+        <TheorySection />
+        <TimelineDiagram />
+        <ComparisonTable />
+
+        <section id="config" className="config-section">
+          <ConfigPanel
+            config={config}
+            onChange={handleConfigChange}
+            onReset={handleResetConfig}
+          />
+        </section>
+
+        <section id="demos" className="demos-section">
+          <h2>🎮 Interactive Demos</h2>
+          <div className="demo-placeholder">
+            <p>
+              Demo components will be implemented in Phase 4. They will showcase:
+            </p>
+            <ul>
+              <li>🔍 Search Input Demo (Debounce)</li>
+              <li>📐 Window Resize Demo (Throttle)</li>
+              <li>📜 Scroll Event Demo (Both)</li>
+              <li>🖱️ Button Click Demo (Throttle)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="metrics" className="metrics-section">
+          <MetricsDashboard metrics={metrics} onReset={handleResetMetrics} />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,238 @@
+.config-panel {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.config-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.expand-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.expand-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.config-content {
+  padding: 1.5rem;
+}
+
+.config-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.config-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.config-section h4 {
+  margin: 0 0 1rem 0;
+  color: var(--neutral-dark);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.config-item {
+  margin-bottom: 1rem;
+}
+
+.config-item:last-child {
+  margin-bottom: 0;
+}
+
+.config-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--neutral-gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.config-item input[type='range'] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.config-item input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.config-item input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.config-item input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.config-item input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.checkbox-item input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-item label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.preset-button {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.625rem 1rem;
+  background: var(--neutral-light);
+  color: var(--neutral-dark);
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.preset-button:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.reset-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.reset-button:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .config-content {
+    padding: 1rem;
+  }
+
+  .preset-buttons {
+    flex-direction: column;
+  }
+
+  .preset-button {
+    width: 100%;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .config-panel {
+    background-color: #2a2a2a;
+  }
+
+  .config-section {
+    border-bottom-color: #404040;
+  }
+
+  .config-section h4 {
+    color: var(--neutral-light);
+  }
+
+  .config-item label {
+    color: #a0a0a0;
+  }
+
+  .preset-button {
+    background: #1a1a1a;
+    color: var(--neutral-light);
+  }
+}
+
+.dark-mode .config-panel {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .config-section {
+  border-bottom-color: #404040;
+}
+
+.dark-mode .config-section h4 {
+  color: var(--neutral-light);
+}
+
+.dark-mode .config-item label {
+  color: #a0a0a0;
+}
+
+.dark-mode .preset-button {
+  background: #1a1a1a;
+  color: var(--neutral-light);
+}
