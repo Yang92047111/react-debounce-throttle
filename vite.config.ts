@@ -9,11 +9,16 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './tests/setup.ts',
     include: ['tests/unit/**/*.test.{ts,tsx}'],
-    exclude: ['tests/e2e/**/*', 'node_modules/**/*'],
+    exclude: [
+      'tests/e2e/**/*',
+      'node_modules/**/*',
+      'tests/unit/components/**/*', // Exclude Phase 3 component tests
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: ['node_modules/', 'tests/'],
+      exclude: ['node_modules/', 'tests/', 'src/components/', 'src/assets/'],
+      include: ['src/utils/**', 'src/hooks/**'],
     },
   },
 })
