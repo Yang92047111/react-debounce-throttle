@@ -10,7 +10,7 @@ import { useState, useEffect, useRef } from 'react';
  */
 export function useThrottle<T>(value: T, interval: number): T {
   const [throttledValue, setThrottledValue] = useState<T>(value);
-  const lastExecuted = useRef<number>(Date.now());
+  const lastExecuted = useRef<number>(0);
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export function useThrottle<T>(value: T, interval: number): T {
     if (timeSinceLastExecution >= interval) {
       // If enough time has passed, update immediately
       lastExecuted.current = now;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThrottledValue(value);
     } else {
       // Otherwise, schedule an update for the remaining time

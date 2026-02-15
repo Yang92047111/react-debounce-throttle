@@ -27,7 +27,12 @@ const ResizeDemo = () => {
   }, []);
 
   useEffect(() => {
-    setThrottledCount((prev) => prev + 1);
+    // Update counter when throttled value changes
+    // Using functional update to avoid adding throttledCount to dependencies
+    const timer = setTimeout(() => {
+      setThrottledCount((prev) => prev + 1);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [throttledWindowSize]);
 
   const handleReset = () => {

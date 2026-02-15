@@ -4,7 +4,7 @@ import ResizeDemo from '../../../../src/components/demos/ResizeDemo';
 
 // Mock the useThrottledCallback hook
 vi.mock('../../../../src/hooks/useThrottledCallback', () => ({
-  useThrottledCallback: (callback: Function) => callback,
+  useThrottledCallback: (callback: (...args: any[]) => any) => callback,
 }));
 
 describe('ResizeDemo', () => {

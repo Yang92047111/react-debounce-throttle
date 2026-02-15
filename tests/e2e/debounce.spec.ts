@@ -8,12 +8,26 @@ test.describe('Debounce Functionality', () => {
   });
 
   test('Search input should debounce API calls', async ({ page }) => {
+    // Find and click reset button to clear counters
+    const resetButton = page.locator('button.reset-button').first();
+    if (await resetButton.count() > 0) {
+      await resetButton.click();
+      await page.waitForTimeout(100);
+    }
+
     // Find the search input
     const searchInput = page.locator('input#search-input');
     await expect(searchInput).toBeVisible();
 
-    // Type rapidly in the search input
-    await searchInput.fill('test');
+    // Type character by character to trigger multiple onChange events
+    await searchInput.click();
+    for (const char of 'test') {
+      await page.keyboard.type(char);
+      await page.waitForTimeout(50);
+    }
+    
+    // Wait for debounce to settle (default is 500ms)
+    await page.waitForTimeout(600);
     
     // Get the counters
     const counters = page.locator('.counter-value');
@@ -26,8 +40,11 @@ test.describe('Debounce Functionality', () => {
     const normalCount = parseInt(normalCountText || '0');
     const debouncedCount = parseInt(debouncedCountText || '0');
     
-    // Debounced count should be less than normal count (more flexible assertion)
-    expect(normalCount).toBeGreaterThanOrEqual(debouncedCount);
+    // Debounced count should be less than or equal to normal count
+    expect(debouncedCount).toBeLessThanOrEqual(normalCount);
+    // Both should be at least 1
+    expect(normalCount).toBeGreaterThanOrEqual(1);
+    expect(debouncedCount).toBeGreaterThanOrEqual(1);
   });
 
   test('Should respect debounce delay configuration', async ({ page }) => {
@@ -50,7 +67,7 @@ test.describe('Debounce Functionality', () => {
     
     // Results should not appear yet
     const debouncedResults = page.locator('.comparison-column').nth(1).locator('.results-box');
-    const resultsText = await debouncedResults.textContent();
+    // await debouncedResults.textContent(); // Not checking text at this point
     
     // After full delay, results should appear
     await page.waitForTimeout(600);

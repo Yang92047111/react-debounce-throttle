@@ -4,11 +4,11 @@ import ScrollDemo from '../../../../src/components/demos/ScrollDemo';
 
 // Mock the hooks
 vi.mock('../../../../src/hooks/useDebouncedCallback', () => ({
-  useDebouncedCallback: (callback: Function) => callback,
+  useDebouncedCallback: (callback: (...args: any[]) => any) => callback,
 }));
 
 vi.mock('../../../../src/hooks/useThrottledCallback', () => ({
-  useThrottledCallback: (callback: Function) => callback,
+  useThrottledCallback: (callback: (...args: any[]) => any) => callback,
 }));
 
 describe('ScrollDemo', () => {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import EventCounter from '../ui/EventCounter';
 
@@ -22,7 +22,7 @@ const SearchDemo = () => {
   };
 
   // Simulate API call with debounce
-  const handleDebouncedSearch = (value: string) => {
+  const handleDebouncedSearch = useCallback((value: string) => {
     setDebouncedCount((prev) => prev + 1);
     setLoading(true);
     // Simulate API latency
@@ -31,7 +31,7 @@ const SearchDemo = () => {
       setDebouncedResults(results);
       setLoading(false);
     }, 300);
-  };
+  }, []);
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,9 +42,9 @@ const SearchDemo = () => {
 
   // Effect for debounced search
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     handleDebouncedSearch(debouncedSearchTerm);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, handleDebouncedSearch]);
 
   const handleReset = () => {
     setSearchTerm('');

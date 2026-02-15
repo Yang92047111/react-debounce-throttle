@@ -10,6 +10,7 @@ const ScrollDemo = () => {
   const [throttledCount, setThrottledCount] = useState(0);
   const [debounceDelay, setDebounceDelay] = useState(300);
   const [throttleInterval, setThrottleInterval] = useState(100);
+  const [scrollPercentage, setScrollPercentage] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   
   const debouncedScrollPosition = useDebounce(scrollPosition, debounceDelay);
@@ -19,7 +20,11 @@ const ScrollDemo = () => {
     const handleScroll = () => {
       if (scrollRef.current) {
         const position = scrollRef.current.scrollTop;
+        const maxScroll = scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+        const percentage = maxScroll > 0 ? Math.round((position / maxScroll) * 100) : 0;
+        
         setScrollPosition(position);
+        setScrollPercentage(percentage);
         setNormalCount((prev) => prev + 1);
       }
     };
@@ -33,12 +38,14 @@ const ScrollDemo = () => {
 
   useEffect(() => {
     if (debouncedScrollPosition > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDebouncedCount((prev) => prev + 1);
     }
   }, [debouncedScrollPosition]);
 
   useEffect(() => {
     if (throttledScrollPosition > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThrottledCount((prev) => prev + 1);
     }
   }, [throttledScrollPosition]);
@@ -50,12 +57,6 @@ const ScrollDemo = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
-  };
-
-  const getScrollPercentage = (position: number) => {
-    if (!scrollRef.current) return 0;
-    const maxScroll = scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
-    return maxScroll > 0 ? Math.round((position / maxScroll) * 100) : 0;
   };
 
   return (
@@ -125,7 +126,7 @@ const ScrollDemo = () => {
             <div className="progress-bar">
               <div 
                 className="progress-fill progress-danger" 
-                style={{ width: `${getScrollPercentage(scrollPosition)}%` }}
+                style={{ width: `${scrollPercentage}%` }}
               />
             </div>
           </div>
@@ -144,7 +145,7 @@ const ScrollDemo = () => {
             <div className="progress-bar">
               <div 
                 className="progress-fill progress-primary" 
-                style={{ width: `${getScrollPercentage(debouncedScrollPosition)}%` }}
+                style={{ width: `${scrollPercentage}%` }}
               />
             </div>
           </div>
@@ -166,7 +167,7 @@ const ScrollDemo = () => {
             <div className="progress-bar">
               <div 
                 className="progress-fill progress-success" 
-                style={{ width: `${getScrollPercentage(throttledScrollPosition)}%` }}
+                style={{ width: `${scrollPercentage}%` }}
               />
             </div>
           </div>

@@ -124,9 +124,15 @@ test.describe('Navigation & UX Tests', () => {
   });
 
   test('Should display header and footer', async ({ page }) => {
-    // Check for header
-    const header = page.locator('header').or(page.locator('h1').first());
-    await expect(header).toBeVisible();
+    // Check for header (prefer header tag, fallback to h1)
+    const header = page.locator('header');
+    const h1 = page.locator('h1').first();
+    
+    if (await header.count() > 0) {
+      await expect(header).toBeVisible();
+    } else {
+      await expect(h1).toBeVisible();
+    }
 
     // Check for footer - scroll to bottom if needed
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
