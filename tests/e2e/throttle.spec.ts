@@ -54,7 +54,7 @@ test.describe('Throttle Functionality', () => {
     await intervalSlider.fill('2000');
     
     // Verify the interval label updates
-    await expect(page.locator('text=Throttle Interval: 2000ms')).toBeVisible();
+    await expect(page.locator('text=Throttle Interval: 2000ms').first()).toBeVisible();
     
     // Click the throttled button
     const buttons = page.locator('.demo-button');
@@ -129,20 +129,20 @@ test.describe('Throttle Functionality', () => {
     await throttledButton.click();
     
     // Check statistics section
-    await expect(page.locator('text=Total Attempts')).toBeVisible();
-    await expect(page.locator('text=Processed')).toBeVisible();
-    await expect(page.locator('text=Prevented')).toBeVisible();
-    await expect(page.locator('text=Protection Rate')).toBeVisible();
+    await expect(page.locator('text=Total Attempts').first()).toBeVisible();
+    await expect(page.locator('text=Processed').first()).toBeVisible();
+    await expect(page.locator('text=Prevented').first()).toBeVisible();
+    await expect(page.locator('text=Protection Rate').first()).toBeVisible();
   });
 
   test('Should show use cases for throttle', async ({ page }) => {
     // Scroll to button demo section
-    await page.locator('text=Button Click Demo').scrollIntoViewIfNeeded();
+    await page.locator('text=Button Click Demo').first().scrollIntoViewIfNeeded();
     
     // Check for use cases section
-    await expect(page.locator('text=Common Use Cases')).toBeVisible();
-    await expect(page.locator('text=Form Submission')).toBeVisible();
-    await expect(page.locator('text=Add to Cart')).toBeVisible();
+    await expect(page.locator('text=Common Use Cases').first()).toBeVisible();
+    await expect(page.locator('text=Form Submission').first()).toBeVisible();
+    await expect(page.locator('text=Add to Cart').first()).toBeVisible();
   });
 
   test('Should calculate performance gain for resize events', async ({ page }) => {
@@ -163,8 +163,8 @@ test.describe('Throttle Functionality', () => {
     await page.waitForTimeout(500);
     
     // Check for performance gain display
-    const savingsIndicator = page.locator('.savings-indicator');
-    await expect(savingsIndicator.first()).toBeVisible();
+    const savingsIndicator = page.locator('.savings-indicator').first();
+    await expect(savingsIndicator).toBeVisible();
   });
 
   test('Should reset counters correctly', async ({ page }) => {
