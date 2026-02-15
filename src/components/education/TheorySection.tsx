@@ -25,6 +25,50 @@ const TheorySection = () => {
   };
 }`;
 
+  const reactDebounceExample = `// Using debounce in React
+import { useDebouncedCallback } from '../hooks/useDebouncedCallback';
+
+function SearchInput() {
+  const handleSearch = useDebouncedCallback(
+    (query: string) => {
+      // API call with debounced query
+      fetch(\`/api/search?q=\${query}\`)
+        .then(res => res.json())
+        .then(data => console.log(data));
+    },
+    300 // Wait 300ms after user stops typing
+  );
+
+  return (
+    <input 
+      type="text" 
+      onChange={(e) => handleSearch(e.target.value)}
+      placeholder="Search..."
+    />
+  );
+}`;
+
+  const reactThrottleExample = `// Using throttle in React
+import { useThrottledCallback } from '../hooks/useThrottledCallback';
+
+function ScrollTracker() {
+  const handleScroll = useThrottledCallback(
+    () => {
+      // Update scroll position at most once per 200ms
+      const scrollY = window.scrollY;
+      console.log('Scroll position:', scrollY);
+    },
+    200 // Execute at most once per 200ms
+  );
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+  return <div>Scroll to see throttled updates</div>;
+}`;
+
   return (
     <section id="theory" className="theory-section">
       <h2>📚 Understanding Debounce & Throttle</h2>
@@ -59,6 +103,17 @@ const TheorySection = () => {
             language="javascript"
             title="Debounce Implementation"
           />
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4 style={{ color: 'var(--secondary)', fontSize: '1.125rem', marginBottom: '0.75rem' }}>
+              React Hook Example:
+            </h4>
+            <CodeBlock
+              code={reactDebounceExample}
+              language="typescript"
+              title="Using Debounce in React"
+            />
+          </div>
         </div>
 
         <div className="theory-card">
@@ -90,6 +145,17 @@ const TheorySection = () => {
             language="javascript"
             title="Throttle Implementation"
           />
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4 style={{ color: 'var(--secondary)', fontSize: '1.125rem', marginBottom: '0.75rem' }}>
+              React Hook Example:
+            </h4>
+            <CodeBlock
+              code={reactThrottleExample}
+              language="typescript"
+              title="Using Throttle in React"
+            />
+          </div>
         </div>
       </div>
 

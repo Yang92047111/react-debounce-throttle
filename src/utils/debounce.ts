@@ -85,17 +85,6 @@ export function debounce<T extends (...args: any[]) => any>(
     return leading ? invokeFunc(time) : result;
   }
 
-  function remainingWait(time: number): number {
-    const timeSinceLastCall = time - (lastCallTime ?? 0);
-    const timeSinceLastInvoke = time - lastInvokeTime;
-    const timeWaiting = wait - timeSinceLastCall;
-    const maxTimeWaiting = maxWait !== undefined ? maxWait - timeSinceLastInvoke : undefined;
-
-    return maxTimeWaiting !== undefined
-      ? Math.min(timeWaiting, maxTimeWaiting)
-      : timeWaiting;
-  }
-
   function trailingEdge(time: number): void {
     timeoutId = undefined;
 

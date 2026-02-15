@@ -20,7 +20,7 @@ export function useDebouncedCallback<T extends (...args: any[]) => any>(
     maxWait?: number;
   }
 ): ((...args: Parameters<T>) => void) & { cancel: () => void; flush: () => void } {
-  const debouncedRef = useRef<ReturnType<typeof debounce>>();
+  const debouncedRef = useRef<ReturnType<typeof debounce> | null>(null);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const memoizedCallback = useCallback(callback, deps);

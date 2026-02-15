@@ -19,7 +19,7 @@ export function useThrottledCallback<T extends (...args: any[]) => any>(
     trailing?: boolean;
   }
 ): ((...args: Parameters<T>) => void) & { cancel: () => void; flush: () => void } {
-  const throttledRef = useRef<ReturnType<typeof throttle>>();
+  const throttledRef = useRef<ReturnType<typeof throttle> | null>(null);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const memoizedCallback = useCallback(callback, deps);
