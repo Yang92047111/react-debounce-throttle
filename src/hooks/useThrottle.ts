@@ -11,7 +11,7 @@ import { useState, useEffect, useRef } from 'react';
 export function useThrottle<T>(value: T, interval: number): T {
   const [throttledValue, setThrottledValue] = useState<T>(value);
   const lastExecuted = useRef<number>(Date.now());
-  const timeoutId = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const now = Date.now();

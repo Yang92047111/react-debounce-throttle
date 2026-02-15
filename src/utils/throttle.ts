@@ -71,11 +71,6 @@ export function throttle<T extends (...args: any[]) => any>(
     return leading ? invokeFunc(time) : result;
   }
 
-  function remainingWait(time: number): number {
-    const timeSinceLastInvoke = time - lastInvokeTime;
-    return wait - timeSinceLastInvoke;
-  }
-
   function trailingEdge(time: number): void {
     timeoutId = undefined;
 
