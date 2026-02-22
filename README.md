@@ -7,8 +7,6 @@
 
 An interactive educational web application that demonstrates the concepts and practical applications of debounce and throttle techniques in React. This project provides hands-on examples, visual feedback, and real-time comparisons to help developers master these essential performance optimization techniques.
 
-![Demo Screenshot](https://via.placeholder.com/800x400?text=Demo+Screenshot)
-
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
