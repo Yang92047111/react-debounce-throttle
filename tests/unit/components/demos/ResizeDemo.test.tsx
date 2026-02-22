@@ -1,10 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
 import ResizeDemo from '../../../../src/components/demos/ResizeDemo';
 
 // Mock the useThrottledCallback hook
 vi.mock('../../../../src/hooks/useThrottledCallback', () => ({
-  useThrottledCallback: (callback: (...args: any[]) => any) => callback,
+  useThrottledCallback: (callback: (...args: unknown[]) => unknown) => callback,
 }));
 
 describe('ResizeDemo', () => {
